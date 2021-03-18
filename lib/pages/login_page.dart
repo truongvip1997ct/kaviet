@@ -140,14 +140,14 @@ class _LoginPageState extends State<LoginPage> {
                                     isApiCallProcess = false;
                                   });
 
-                                  if (value.access_token.isNotEmpty) {
+                                  if (value.success) {
                                     final snackBar = SnackBar(
                                         content: Text("Đăng Nhập Thành Công"));
                                     scaffoldKey.currentState
                                         .showSnackBar(snackBar);
                                   } else {
                                     final snackBar = SnackBar(
-                                        content: Text("Đăng Nhập That bai")
+                                        content: Text("Đăng Nhập Thất Bại")
                                     );
                                     scaffoldKey.currentState
                                         .showSnackBar(snackBar);
