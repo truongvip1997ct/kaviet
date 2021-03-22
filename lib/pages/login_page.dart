@@ -2,8 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_http_post_request/api/api_service.dart';
 import 'package:flutter_http_post_request/model/login_model.dart';
-
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import '../ProgressHUD.dart';
+import 'dart:async';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -11,11 +12,18 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  final storage = new FlutterSecureStorage();
+  final _key = "token";
   bool hidePassword = true;
   bool isApiCallProcess = false;
   GlobalKey<FormState> globalFormKey = GlobalKey<FormState>();
   LoginRequestModel loginRequestModel;
   final scaffoldKey = GlobalKey<ScaffoldState>();
+  Future write(token) async {
+    storage.write(key: "token", value: token);
+    String tk = await storage.read(key: "token");
+    print("Here: " + tk);
+  }
   @override
   void initState() {
     super.initState();
@@ -141,6 +149,7 @@ class _LoginPageState extends State<LoginPage> {
                                   });
 
                                   if (value.success) {
+                                    write(value.token);
                                     final snackBar = SnackBar(
                                         content: Text("Đăng Nhập Thành Công"));
                                     scaffoldKey.currentState

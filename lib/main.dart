@@ -1,15 +1,52 @@
 import 'package:flutter/material.dart';
-
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'pages/login_page.dart';
-
+import 'reports/date.dart';
+import 'dart:async';
+import 'package:intl/date_symbol_data_local.dart';
 void main() {
-  runApp(MyApp());
+   runApp(MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
+  @override
+  _MyAppState createState() => new _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+
+  final storage = new FlutterSecureStorage();
+  final _key = "token";
+
+  Future read() async {
+    try{
+
+      String tk = await storage.read(key: _key);
+      print("Here1: " + tk.toString());
+      if(tk != null){
+        print("dang nhap thanh cong!");
+        //home: DatePickerDemo();
+        // Đẩy trang repost vào here`
+      }else{
+
+
+      }
+
+//      if(tk != null){
+//        print(tk);
+//      }
+    }catch(e){
+      print(e);
+    }
+
+  }
+
+
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    read();
+    return new MaterialApp(
       title: 'Image Loader',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
@@ -34,7 +71,26 @@ class MyApp extends StatelessWidget {
           ),
         ),
       ),
-      home: LoginPage(),
+      //home: LoginPage(),
+      home: DatePickerDemo(),
     );
   }
 }
+
+
+//class MyApp extends StatelessWidget {
+//  final storage = new FlutterSecureStorage();
+//  final _key = "token";
+//
+//  Future read() async {
+//    String tk = await storage.read(key: _key);
+//    print("Here1: " + tk);
+//  }
+//
+//
+//  @override
+//  Widget build(BuildContext context) {
+//
+//    return ;
+//  }
+//}
