@@ -12,17 +12,7 @@ class MyHomeApp extends StatelessWidget {
     //  Intl.defaultLocale = 'vi_VI';
    // var newFormat = new DateFormat.yMMMMd('vi_VI');
 //    initializeDateFormatting(Intl.defaultLocale);
-    return new MaterialApp(
-      title: 'App Title',
-      localizationsDelegates: [
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-      ],
-      supportedLocales: [
-        const Locale('en', 'EN'),
-        const Locale('vi', 'VI'),
-      ],
-    );
+    return Container();
   }
 }
 
@@ -56,8 +46,8 @@ class _DatePickerDemoState extends State<DatePickerDemo> {
                 print("2");
                 showDatePicker(
                     context: context,
-                    locale :  Locale("vi","VI"),
-                    initialDate: selectedDate,
+                    locale : const Locale('vi', 'VI'),
+                    initialDate: DateTime.now(),
                     firstDate: DateTime(2018),
                     lastDate: DateTime(2030),
                     builder: (BuildContext context, Widget child) {

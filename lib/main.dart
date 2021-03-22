@@ -4,6 +4,7 @@ import 'pages/login_page.dart';
 import 'reports/date.dart';
 import 'dart:async';
 import 'package:intl/date_symbol_data_local.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 void main() {
    runApp(MyApp());
 }
@@ -73,6 +74,16 @@ class _MyAppState extends State<MyApp> {
       ),
       //home: LoginPage(),
       home: DatePickerDemo(),
+      localizationsDelegates: [
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
+      supportedLocales: [
+        const Locale('en', 'EN'),
+        const Locale('vi', 'VI'),
+        const Locale('fr', 'FR')
+      ],
     );
   }
 }
