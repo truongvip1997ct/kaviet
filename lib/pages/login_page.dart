@@ -5,7 +5,7 @@ import 'package:flutter_http_post_request/model/login_model.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import '../ProgressHUD.dart';
 import 'dart:async';
-
+import 'report_page.dart';
 class LoginPage extends StatefulWidget {
   @override
   _LoginPageState createState() => _LoginPageState();
@@ -24,6 +24,7 @@ class _LoginPageState extends State<LoginPage> {
     String tk = await storage.read(key: "token");
     print("Here: " + tk);
   }
+
   @override
   void initState() {
     super.initState();
@@ -149,11 +150,16 @@ class _LoginPageState extends State<LoginPage> {
                                   });
 
                                   if (value.success) {
-                                    write(value.token);
+                                    //write(value.token);
+
                                     final snackBar = SnackBar(
                                         content: Text("Đăng Nhập Thành Công"));
                                     scaffoldKey.currentState
                                         .showSnackBar(snackBar);
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(builder: (context) => ReportPage()),
+                                    );
                                   } else {
                                     final snackBar = SnackBar(
                                         content: Text("Đăng Nhập Thất Bại")

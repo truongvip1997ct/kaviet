@@ -5,6 +5,7 @@ import 'reports/date.dart';
 import 'dart:async';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'reports/report_summary.dart';
 void main() {
    runApp(MyApp());
 }
@@ -72,8 +73,9 @@ class _MyAppState extends State<MyApp> {
           ),
         ),
       ),
-      //home: LoginPage(),
-      home: DatePickerDemo(),
+      home: LoginPage(),
+      //home: DatePickerDemo(),
+     //home: ReportSummary(),
       localizationsDelegates: [
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
@@ -84,6 +86,7 @@ class _MyAppState extends State<MyApp> {
         const Locale('vi', 'VI'),
         const Locale('fr', 'FR')
       ],
+
     );
   }
 }
