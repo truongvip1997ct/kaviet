@@ -13,22 +13,22 @@ class ReportSummaryResponsModel {
 
     return ReportSummaryResponsModel(
       success : json['success']  ? json['success'] :  false,
-      formId : json['data']['billing_summary']['form_name'] != null ? json['data']['billing_summary']['form_name'] :  "",
-      formName : json['data']['billing_summary']['formId'] != null ? json['data']['billing_summary']['formId'] :  "",
-      totalBill : json['data']['billing_summary']['total_bill'] != null ? json['data']['billing_summary']['total_bill'] :  "",
-      totalPrice : json['data']['billing_summary']['total_price'] != null ? json['data']['billing_summary']['total_price'] :  "",
+//      formId : json['data']['billing_summary']['form_name'] != null ? json['data']['billing_summary']['form_name'] :  "",
+//      formName : json['data']['billing_summary']['formId'] != null ? json['data']['billing_summary']['formId'] :  "",
+//      totalBill : json['data']['billing_summary']['total_bill'] != null ? json['data']['billing_summary']['total_bill'] :  "",
+//      totalPrice : json['data']['billing_summary']['total_price'] != null ? json['data']['billing_summary']['total_price'] :  "",
       error: json["error"] != null ? json["error"] : "",
     );
   }
 }
 
 class ReportSummaryRequestModel {
-  int startDate = 1614531600;
-  var endDate = 1616173199.999;
+  var startDate;
+  var endDate;
 
   ReportSummaryRequestModel({
-    this.startDate,
-    this.endDate,
+    this.startDate = 1614531600,
+    this.endDate = 1616173199,
   });
 
   Map<String, dynamic> toJson() {
