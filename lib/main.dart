@@ -6,6 +6,9 @@ import 'dart:async';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'reports/report_summary.dart';
+import 'package:flutter_http_post_request/pages/report_page.dart';
+
+import 'package:flutter_http_post_request/model/double_chart.dart';
 void main() {
    runApp(MyApp());
 }
@@ -27,11 +30,12 @@ class _MyAppState extends State<MyApp> {
       print("Here1: " + tk.toString());
       if(tk != null){
         print("dang nhap thanh cong!");
+//        Navigator.push(
+//          context,
+//          MaterialPageRoute(builder: (context) => ReportPage()),
+//        );
         //home: DatePickerDemo();
         // Đẩy trang repost vào here`
-      }else{
-
-
       }
 
 //      if(tk != null){
@@ -73,7 +77,10 @@ class _MyAppState extends State<MyApp> {
           ),
         ),
       ),
-      home: LoginPage(),
+      home:BarChartSample2(),
+        //home:BarChartDemo(),
+        //home: ReportSummary(),
+      //home: LoginPage(),
       //home: DatePickerDemo(),
      //home: ReportSummary(),
       localizationsDelegates: [

@@ -54,51 +54,51 @@ class _ReportSummaryState extends State<ReportSummary> {
 
   Widget build(BuildContext context) {
     print(reportSummaryRequestModel.endDate);
-    apiServiceReport.reportSummary(reportSummaryRequestModel);
-//      FutureBuilder<ReportSummaryResponsModel>(
-//        future: apiServiceReport.reportSummary(reportSummaryRequestModel),
-//        builder: (BuildContext context, AsyncSnapshot<ReportSummaryResponsModel> snapshot){
-//          Widget result = Container();
-//          if(snapshot.hasData){
-//            print(snapshot.data.success);
-//            result =  Scaffold(
-//
-//                body: Center(
-//
-//                  child: Container(
-//                    padding: EdgeInsets.all(30.0),
-//                    child: Row(
-//                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-//                      children: [
-//                        Column(
-//                          crossAxisAlignment: CrossAxisAlignment.start,
-//                          children: [
-//                            Text('Loại'),
-//                            Text('Tổng'),
-//                            Text('Dùng tại bàn'),
-//                            Text('Mang đi'),
-//                          ],
-//                        ),
-//                        Column(
-//                          children: [
-//                            Text('Giao dịch'),
-//                          ],
-//                        ),
-//                        Column(
-//                          children: [
-//                            Text('Tổng Số tiền thu được'),
-//                          ],
-//                        ),
-//                      ],
-//                    ),
-//                  ),
-//                )
-//            );
-//          }
-//          return result;
-//        }
-//    );
-    return Text("Ok");
+    return
+      FutureBuilder<ReportSummaryResponsModel>(
+        future: apiServiceReport.reportSummary(reportSummaryRequestModel),
+        builder: (BuildContext context, AsyncSnapshot<ReportSummaryResponsModel> snapshot){
+          Widget result = Container();
+          if(snapshot.hasData){
+            print(snapshot.data.success);
+            result =  Scaffold(
+
+                body: Center(
+
+                  child: Container(
+                    padding: EdgeInsets.all(30.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text('Loại'),
+                            Text('Tổng'),
+                            Text('Dùng tại bàn'),
+                            Text('Mang đi'),
+                          ],
+                        ),
+                        Column(
+                          children: [
+                            Text('Giao dịch'),
+                          ],
+                        ),
+                        Column(
+                          children: [
+                            Text('Tổng Số tiền thu được'),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                )
+            );
+          }
+          return result;
+        }
+    );
+//    return Text("Ok");
     //DateTime tempDate = new DateFormat("dd/MM/yyyy hh:mm:ss").parse("12/01/2020 10:07:23");
 
 

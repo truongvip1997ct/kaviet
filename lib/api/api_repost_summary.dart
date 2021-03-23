@@ -8,17 +8,17 @@ class APIServiceReport {
     final _key = "token";
     final storage = new FlutterSecureStorage();
     String tk = await storage.read(key: _key);
-
+    Map<String, String> body = {
+      "start_date": "1614531600",
+      "end_date": "1616173199",
+      "is_main": "true"
+    };
     //print(ReportSummaryRequestModel().endDate);
-    var response = http.post(url, body: {
-      "start_date": 1614531600,
-      "end_date": 1616173199,
-      "is_main": true
-    },
+    var response = http.post(url, body: body ,
     headers: {'Authorization' : 'Bearer ' + tk}).then((value) => {
         print(value)
     });
-    print(tk);
+//    print(tk);
 
 //    if (response.statusCode == 200 || response.statusCode == 400) {
 //

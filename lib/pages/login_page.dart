@@ -160,6 +160,7 @@ class _LoginPageState extends State<LoginPage> {
                                       context,
                                       MaterialPageRoute(builder: (context) => ReportPage()),
                                     );
+
                                   } else {
                                     final snackBar = SnackBar(
                                         content: Text("Đăng Nhập Thất Bại")
