@@ -2,7 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_http_post_request/api/api_service.dart';
-
+import 'package:flutter_http_post_request/reports/report_summary.dart';
+import 'package:flutter_http_post_request/reports/report_category.dart';
+import 'package:flutter_http_post_request/reports/report_top_product.dart';
 
 import '../ProgressHUD.dart';
 
@@ -30,74 +32,106 @@ class _ReportPageState extends State<ReportPage> {
 
   Widget _uiSetup(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Padding(
-          padding: const EdgeInsets.all(16),
-          child: Card(
-            child: Padding(
-              padding: const EdgeInsets.all(16),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: <Widget>[
-                  ListTile(
-                    title: new Text(
-                      'Báo Cáo',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                          fontSize: 24.0,
-                          color: Colors.red,
-                          fontWeight: FontWeight.bold),
-                    ),
-                  ),
-                  OutlineButton(
-                    child: Text('Doanh thu tổng quan'),
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => SecondRoute()),
-                      );
-                    },
-                  ),
-                  OutlineButton(
-                    child: Text('Doanh thu theo nhân viên'),
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => SecondRoute()),
-                      );
-                    },
-                  ),
-                  OutlineButton(
-                    child: Text('Doanh thu theo danh mục'),
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => SecondRoute()),
-                      );
-                    },
-                  ),
-                  OutlineButton(
-                    child: Text('Mặt hàng bán chạy'),
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => SecondRoute()),
-                      );
-                    },
-                  ),
-                  OutlineButton(
-                    child: Text('Mặt hàng tùy chỉnh'),
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => SecondRoute()),
-                      );
-                    },
-                  ),
-                ],
+      appBar: AppBar(
+        title: new Text('Cafe KAVIET'),
+      ),
+      body: Center(child: Text('My Page!')),
+      drawer: Drawer(
+        // Add a ListView to the drawer. This ensures the user can scroll
+        // through the options in the drawer if there isn't enough vertical
+        // space to fit everything.
+        child: new SafeArea(
+          // Important: Remove any padding from the ListView.
+          top: false,
+          bottom: false,
+          minimum: const EdgeInsets.all(16.0),
+          child: Column(
+            children: <Widget>[
+              ListTile(
+                title: new Text(
+                  'Báo Cáo',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                      fontSize: 24.0,
+                      color: Colors.red,
+                      fontWeight: FontWeight.bold),
+                ),
               ),
-            ),
+              ListTile(
+                title: Text('Doanh thu tổng quan'),
+                onTap: () {
+                  // Update the state of the app
+                  // ...
+                  // Then close the drawer
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => ReportSummary()),
+                  );
+                },
+              ),
+              ListTile(
+                title: Text('Doanh thu theo nhân viên'),
+                onTap: () {
+                  // Update the state of the app
+                  // ...
+                  // Then close the drawer
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => SecondRoute()),
+                  );
+                },
+              ),
+              ListTile(
+                title: Text('Doanh thu theo danh mục'),
+                onTap: () {
+                  // Update the state of the app
+                  // ...
+                  // Then close the drawer
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => ReportCategoryPage()),
+                  );
+                },
+              ),
+              ListTile(
+                title: Text('Mặt hàng bán chạy'),
+                onTap: () {
+                  // Update the state of the app
+                  // ...
+                  // Then close the drawer
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => ReportTopProductPage()),
+                  );
+                },
+              ),
+              ListTile(
+                title: Text('Mặt hàng tuỳ chỉnh'),
+                onTap: () {
+                  // Update the state of the app
+                  // ...
+                  // Then close the drawer
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => SecondRoute()),
+                  );
+                },
+              ),
+              ListTile(
+                title: Text('Lịch sử hoá đơn'),
+                onTap: () {
+                  // Update the state of the app
+                  // ...
+                  // Then close the drawer
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => SecondRoute()),
+                  );
+                },
+              ),
+            ],
           ),
         ),
       ),
