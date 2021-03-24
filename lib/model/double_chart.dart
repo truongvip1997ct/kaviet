@@ -9,12 +9,12 @@ class BarChartSample2 extends StatefulWidget {
 class BarChartSample2State extends State<BarChartSample2> {
   final Color leftBarColor = const Color(0xff53fdd7);
   final Color rightBarColor = const Color(0xffff5182);
-  final double width = 20;
+  final double width = 5
+  ;
 
   List<BarChartGroupData> rawBarGroups;
   List<BarChartGroupData> showingBarGroups;
 
-  int touchedGroupIndex;
 
   @override
   void initState() {
@@ -38,7 +38,11 @@ class BarChartSample2State extends State<BarChartSample2> {
     final barGroup17 = makeGroupData(16, 10, 1.5);
     final barGroup18 = makeGroupData(17, 10, 1.5);
     final barGroup19 = makeGroupData(18, 12, 3);
-
+    final barGroup20 = makeGroupData(15, 19, 1.5);
+    final barGroup21 = makeGroupData(16, 10, 1.5);
+    final barGroup22 = makeGroupData(17, 10, 1.5);
+    final barGroup23 = makeGroupData(18, 12, 3);
+    final barGroup24 = makeGroupData(18, 12, 3);
     final items = [
       barGroup1,
       barGroup2,
@@ -96,15 +100,8 @@ class BarChartSample2State extends State<BarChartSample2> {
                     width: 38,
                   ),
                   const Text(
-                    'Transactions',
+                    'Doanh Thu Tổng Quan',
                     style: TextStyle(color: Colors.white, fontSize: 22),
-                  ),
-                  const SizedBox(
-                    width: 4,
-                  ),
-                  const Text(
-                    'state',
-                    style: TextStyle(color: Color(0xff77839a), fontSize: 16),
                   ),
                 ],
               ),
@@ -125,77 +122,72 @@ class BarChartSample2State extends State<BarChartSample2> {
                           touchCallback: (response) {
                             if (response.spot == null) {
                               setState(() {
-                                touchedGroupIndex = -1;
+
                                 showingBarGroups = List.of(rawBarGroups);
                               });
                               return;
                             }
 
-                            touchedGroupIndex = response.spot.touchedBarGroupIndex;
 
-                            setState(() {
-                              if (response.touchInput is PointerExitEvent ||
-                                  response.touchInput is PointerUpEvent) {
-                                touchedGroupIndex = -1;
-                                showingBarGroups = List.of(rawBarGroups);
-                              } else {
-                                showingBarGroups = List.of(rawBarGroups);
-                                if (touchedGroupIndex != -1) {
-                                  double sum = 0;
-                                  for (BarChartRodData rod
-                                  in showingBarGroups[touchedGroupIndex].barRods) {
-                                    sum += rod.y;
-                                  }
-                                  final avg =
-                                      sum / showingBarGroups[touchedGroupIndex].barRods.length;
 
-                                  showingBarGroups[touchedGroupIndex] =
-                                      showingBarGroups[touchedGroupIndex].copyWith(
-                                        barRods: showingBarGroups[touchedGroupIndex].barRods.map((rod) {
-                                          return rod.copyWith(y: avg);
-                                        }).toList(),
-                                      );
-                                }
-                              }
-                            });
                           }),
                       titlesData: FlTitlesData(
                         show: true,
                         bottomTitles: SideTitles(
                           showTitles: true,
                           textStyle: TextStyle(
-                              color: Color(0xff7589a2), fontWeight: FontWeight.bold, fontSize: 14),
-                          margin: 20,
+                              color: Color(0xff7589a2), fontWeight: FontWeight.bold, fontSize: 10),
+                          margin: 10,
                           getTitles: (double value) {
                             switch (value.toInt()) {
                               case 0:
-                                return '0';
+                                return '0h';
                               case 1:
-                                return '1';
+                                return '1h';
                               case 2:
-                                return '2';
+                                return '2h';
                               case 3:
-                                return '3';
+                                return '3h';
                               case 4:
-                                return '4';
+                                return '4h';
                               case 5:
-                                return '5';
+                                return '5h';
                               case 6:
-                                return '6';
+                                return '6h';
                               case 7:
-                                return '7';
+                                return '7h';
                               case 8:
-                                return '8';
+                                return '8h';
                               case 9:
-                                return '9';
+                                return '9h';
                               case 10:
-                                return '10';
+                                return '10h';
                               case 11:
-                                return '11';
+                                return '11h';
                               case 12:
-                                return '12';
+                                return '12h';
                               case 13:
-                                return '13';
+                                return '13h';
+                              case 14:
+                                return '14h';
+                              case 15:
+                                return '15h';
+                              case 16:
+                                return '16h';
+                              case 17:
+                                return '17h';
+                              case 18:
+                                return '18h';
+                              case 19:
+                                return '19h';
+                              case 20:
+                                return '20h';
+                              case 21:
+                                return '21h';
+                              case 22:
+                                return '22h';
+                              case 23:
+                                return '23h';
                                 return '';
                             }
                           },
@@ -203,16 +195,22 @@ class BarChartSample2State extends State<BarChartSample2> {
                         leftTitles: SideTitles(
                           showTitles: true,
                           textStyle: TextStyle(
-                              color: Color(0xff7589a2), fontWeight: FontWeight.bold, fontSize: 14),
+                              color: Color(0xff7589a2), fontWeight: FontWeight.bold, fontSize: 10),
                           margin: 32,
-                          reservedSize: 14,
+                          reservedSize: 20,
                           getTitles: (value) {
                             if (value == 0) {
-                              return '1K';
-                            } else if (value == 10) {
-                              return '5K';
-                            } else if (value == 19) {
-                              return '10K';
+                              return '200,000';
+                            } else if (value == 3) {
+                              return '400,000';
+                            } else if (value == 6) {
+                              return '600,000';
+                            }else if (value == 9) {
+                              return '800,000';
+                            }else if (value == 12) {
+                              return '1,000,000';
+                            }else if (value == 15) {
+                              return '1,200,000';
                             } else {
                               return '';
                             }
