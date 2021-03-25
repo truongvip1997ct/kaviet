@@ -25,9 +25,14 @@ class _LoginPageState extends State<LoginPage> {
     print("Here: " + tk);
 
   }
-  Future read() async {
-    try{
+  Future delete() async {
+    storage.delete(key: "token");
 
+
+  }
+  Future read() async {
+    delete();
+    try{
       String tk = await storage.read(key: _key);
       print("Here1: " + tk.toString());
       if(tk != null){
@@ -99,7 +104,7 @@ class _LoginPageState extends State<LoginPage> {
                         SizedBox(height: 20),
                         new TextFormField(
                           keyboardType: TextInputType.text,
-                          onSaved: (input) => loginRequestModel.username = input,
+                          onSaved: (input) => loginRequestModel.phonenumber = input,
                           decoration: new InputDecoration(
                             hintText: "Số Điện Thoại",
                             enabledBorder: UnderlineInputBorder(
@@ -164,17 +169,15 @@ class _LoginPageState extends State<LoginPage> {
                               setState(() {
                                 isApiCallProcess = true;
                               });
-
+                              print("1");
                               APIService apiService = new APIService();
                               apiService.login(loginRequestModel).then((value) {
-
                                 if (value != null) {
                                   setState(() {
                                     isApiCallProcess = false;
                                   });
-
                                   if (value.success) {
-                                    //write(value.token);
+                                    write(value.token);
 
                                     final snackBar = SnackBar(
                                         content: Text("Đăng Nhập Thành Công"));

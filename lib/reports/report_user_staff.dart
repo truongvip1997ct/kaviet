@@ -5,7 +5,7 @@ import '../ProgressHUD.dart';
 import 'package:flutter_http_post_request/model/double_chart.dart';
 import 'package:flutter_http_post_request/model/report_summary_model.dart';
 import 'package:flutter_http_post_request/api/api_repost_summary.dart';
-
+import 'package:flutter_http_post_request/api/api_imcome_user.dart';
 class MyHomeApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -24,7 +24,7 @@ class _ReportSummaryState extends State<ReportSummary> {
   }
 
   ReportSummaryRequestModel reportSummaryRequestModel =
-      new ReportSummaryRequestModel();
+  new ReportSummaryRequestModel();
 
   //var now = DateTime.now();
 
@@ -43,11 +43,11 @@ class _ReportSummaryState extends State<ReportSummary> {
 //        builder: null
 //    );
 //  }
-  APIServiceReport apiServiceReport = new APIServiceReport();
+  APIIncomeUser apiIncomeUser = new APIIncomeUser();
 
   Widget build(BuildContext context) {
     return FutureBuilder<Map>(
-        future: apiServiceReport.reportSummary(reportSummaryRequestModel),
+        future: apiIncomeUser.reportSummary(reportSummaryRequestModel),
         builder: (BuildContext context, AsyncSnapshot<Map> snapshot) {
           Widget result = Container();
           if (snapshot.hasData) {
@@ -55,18 +55,11 @@ class _ReportSummaryState extends State<ReportSummary> {
                 snapshot.data['data']['billing_summary'][0]['total_price']);
             int total_price2 = int.parse(
                 snapshot.data['data']['billing_summary'][1]['total_price']);
-            int total_bill1 = int.parse(snapshot.data['data']['billing_summary']
-                    [0]['total_bill']
-                .toString());
-            int total_bill2 = int.parse(snapshot.data['data']['billing_summary']
-                    [1]['total_bill']
-                .toString());
-            int total_bill = total_bill1 + total_bill2;
+
             int sum = total_price1 + total_price2;
             String sumTotal;
-            String sumBill = total_bill.toString();
-            String totalBill1 = total_bill1.toString();
-            String totalBill2 = total_bill2.toString();
+            String totalPrice1 = total_price1.toString();
+            String totalPrice2 = total_price2.toString();
             sumTotal = sum.toString();
             DateTime selectedDate = DateTime.now();
             result = Scaffold(
@@ -93,132 +86,45 @@ class _ReportSummaryState extends State<ReportSummary> {
                   ),
                 ],
               ),
-            body: Table(
-                border: TableBorder.all(),
-                columnWidths: const <int, TableColumnWidth>{
-                  0: IntrinsicColumnWidth(),
-                  1: FlexColumnWidth(),
-                  2: FixedColumnWidth(200),
-                },
-                defaultVerticalAlignment: TableCellVerticalAlignment.middle,
-                children: <TableRow>[
-                  TableRow(
-                    children: <Widget>[
-                      Container(
-                        height: 30,
-                        child: Text(
-                          'Loại',
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                              fontSize: 15.0,
-                              color: Colors.red,
-                              fontWeight: FontWeight.bold),
-                        ),
+              body: Center(
+                child: Container(
+                  padding: EdgeInsets.all(30.0),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text('Tên nhân viên'),
+                          Text('Tuấn Anh'),
+                          Text('Tổng Số Tiền Thu được'),
+                        ],
                       ),
-                      TableCell(
-                        verticalAlignment: TableCellVerticalAlignment.top,
-                        child: Container(
-                          height: 30,
-                          width: 15,
-                          child: Text(
-                            'Giao dịch',
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                                fontSize: 15.0,
-                                color: Colors.red,
-                                fontWeight: FontWeight.bold),
-                          ),
-                        ),
+                      Row(
+                        children: [
+                          Text('Tổng'),
+                          test(''),
+                          test(''),
+                        ],
                       ),
-                      Container(
-                        height: 30,
-                        child: Text(
-                          'Tổng Số Tiền Thu được',
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                              fontSize: 15.0,
-                              color: Colors.red,
-                              fontWeight: FontWeight.bold),
-                        ),
+                      Row(
+                        children: [
+                          Text('Dùng Tại Bàn'),
+                          test(''),
+                          test(''),
+                        ],
                       ),
+                      Row(
+                        children: [
+                          Text('Mang đi'),
+                          test(''),
+                          test(''),
+                        ],
+                      ),
+                      BarChartSample2(),
                     ],
                   ),
-                  TableRow(
-                    children: <Widget>[
-                      Container(
-                        height: 20,
-                        width: 200,
-                        child: Text(
-                          'Tổng',
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                              fontSize: 15.0,
-                              color: Colors.red,
-                              fontWeight: FontWeight.bold),
-                        ),
-                      ),
-                      TableCell(
-                        verticalAlignment: TableCellVerticalAlignment.top,
-                        child: Center(
-                          child: test(sumBill),
-                        ),
-                      ),
-                      Center(
-                        child: test(sumTotal),
-                      ),
-                    ],
-                  ),
-                  TableRow(
-                    children: <Widget>[
-                      Container(
-                        height: 20,
-                        child: Text(
-                          'Dùng Tại Bàn',
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                              fontSize: 15.0,
-                              color: Colors.red,
-                              fontWeight: FontWeight.bold),
-                        ),
-                      ),
-                      TableCell(
-                        verticalAlignment: TableCellVerticalAlignment.top,
-                        child: Center(
-                          child: test(totalBill1),
-                        ),
-                      ),
-                      Center(
-                        child: test(snapshot.data['data']['billing_summary'][0]
-                            ['total_price']),
-                      ),
-                    ],
-                  ),
-                  TableRow(
-                    children: <Widget>[
-                      Container(
-                        height: 20,
-                        child: Text(
-                          'Mang đi',
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                              fontSize: 15.0,
-                              color: Colors.red,
-                              fontWeight: FontWeight.bold),
-                        ),
-                      ),
-                      TableCell(
-                        verticalAlignment: TableCellVerticalAlignment.top,
-                        child: Center(
-                          child: test(totalBill2),
-                        ),
-                      ),
-                      Center(
-                        child: test(snapshot.data['data']['billing_summary'][1]
-                            ['total_price']),
-                      ),
-                    ],
-                  ),
-                ],
+                ),
               ),
             );
           }

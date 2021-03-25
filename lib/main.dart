@@ -94,10 +94,11 @@ class _MyAppState extends State<MyApp> {
 //      // Disable animations for image tests.
 //        animate: false,
 //      ),
+      home:ReportSummary(),
       //home: LineChartSample2(),
         //home:BarChartDemo(),
         //home: ReportSummary(),
-      home: LoginPage(),
+      //home: LoginPage(),
       //home: DatePickerDemo(),
      //home: ReportSummary(),
       localizationsDelegates: [

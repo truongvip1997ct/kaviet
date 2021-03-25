@@ -9,8 +9,8 @@ class BarChartSample2 extends StatefulWidget {
 class BarChartSample2State extends State<BarChartSample2> {
   final Color leftBarColor = const Color(0xff53fdd7);
   final Color rightBarColor = const Color(0xffff5182);
-  final double width = 5
-  ;
+  final double width = 5;
+
 
   List<BarChartGroupData> rawBarGroups;
   List<BarChartGroupData> showingBarGroups;
@@ -105,6 +105,9 @@ class BarChartSample2State extends State<BarChartSample2> {
                     'Doanh Thu Tổng Quan',
                     style: TextStyle(color: Colors.white, fontSize: 22),
                   ),
+                  const Text('Dùng tại bàn', style: TextStyle(color: Colors.white, fontSize: 20)),
+
+                  const Text ('Mang đi',style: TextStyle(color: Colors.white, fontSize: 20)),
                 ],
               ),
 
