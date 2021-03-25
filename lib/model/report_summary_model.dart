@@ -6,18 +6,19 @@ class ReportSummaryResponsModel {
   final int totalBill;
   final int totalPrice;
 
-  ReportSummaryResponsModel({this.success, this.error, this.formName,this.totalBill,this.totalPrice,this.formId});
+  ReportSummaryResponsModel({this.success, this.error,this.formId,this.formName,this.totalBill,this.totalPrice});
 
   factory ReportSummaryResponsModel.fromJson(Map<String, dynamic> json) {
 
 
     return ReportSummaryResponsModel(
       success : json['success']  ? json['success'] :  false,
-//      formId : json['data']['billing_summary']['form_name'] != null ? json['data']['billing_summary']['form_name'] :  "",
-//      formName : json['data']['billing_summary']['formId'] != null ? json['data']['billing_summary']['formId'] :  "",
-//      totalBill : json['data']['billing_summary']['total_bill'] != null ? json['data']['billing_summary']['total_bill'] :  "",
-//      totalPrice : json['data']['billing_summary']['total_price'] != null ? json['data']['billing_summary']['total_price'] :  "",
+      formId : json['data']['billing_summary']['form_name'] != null ? json['data']['billing_summary']['form_name'] :  "",
+      formName : json['data']['billing_summary']['formId'] != null ? json['data']['billing_summary']['formId'] :  "",
+      totalBill : json['data']['billing_summary']['total_bill'] != null ? json['data']['billing_summary']['total_bill'] :  "",
+      totalPrice : json['data']['billing_summary']['total_price'] != null ? json['data']['billing_summary']['total_price'] :  "",
       error: json["error"] != null ? json["error"] : "",
+
     );
   }
 }

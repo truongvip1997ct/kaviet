@@ -23,6 +23,29 @@ class _LoginPageState extends State<LoginPage> {
     storage.write(key: "token", value: token);
     String tk = await storage.read(key: "token");
     print("Here: " + tk);
+
+  }
+  Future read() async {
+    try{
+
+      String tk = await storage.read(key: _key);
+      print("Here1: " + tk.toString());
+      if(tk != null){
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => ReportPage()),
+        );
+        //home: DatePickerDemo();
+        // Đẩy trang repost vào here`
+      }
+
+//      if(tk != null){
+//        print(tk);
+//      }
+    }catch(e){
+      print(e);
+    }
+
   }
 
   @override
@@ -41,6 +64,7 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   Widget _uiSetup(BuildContext context) {
+    read();
     return Scaffold(
       key: scaffoldKey,
       backgroundColor: Theme.of(context).accentColor,

@@ -7,8 +7,11 @@ import 'package:intl/date_symbol_data_local.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'reports/report_summary.dart';
 import 'package:flutter_http_post_request/pages/report_page.dart';
-
+import 'package:flutter_http_post_request/model/horizontal_double_chart.dart';
 import 'package:flutter_http_post_request/model/double_chart.dart';
+import 'package:flutter_http_post_request/pages/report_page.dart';
+import 'package:charts_flutter/flutter.dart' as charts;
+import 'package:flutter_http_post_request/model/line_chart.dart';
 void main() {
    runApp(MyApp());
 }
@@ -23,35 +26,43 @@ class _MyAppState extends State<MyApp> {
   final storage = new FlutterSecureStorage();
   final _key = "token";
 
-  Future read() async {
-    try{
 
-      String tk = await storage.read(key: _key);
-      print("Here1: " + tk.toString());
-      if(tk != null){
-        print("dang nhap thanh cong!");
-//        Navigator.push(
-//          context,
-//          MaterialPageRoute(builder: (context) => ReportPage()),
-//        );
-        //home: DatePickerDemo();
-        // Đẩy trang repost vào here`
-      }
+  static const secondaryMeasureAxisId = 'secondaryMeasureAxisId';
+  static List<charts.Series<OrdinalSales, String>> _createSampleData() {
+    final globalSalesData = [
+      new OrdinalSales('Phạm Chí Cường', 10000000),
+      new OrdinalSales('Danh', 750000),
 
-//      if(tk != null){
-//        print(tk);
-//      }
-    }catch(e){
-      print(e);
-    }
+    ];
 
+    final losAngelesSalesData = [
+      new OrdinalSales('Phạm Chí Cường', 25),
+      new OrdinalSales('Danh', 50),
+
+    ];
+
+    return [
+      new charts.Series<OrdinalSales, String>(
+        id: 'Global Revenue',
+        domainFn: (OrdinalSales sales, _) => sales.year,
+        measureFn: (OrdinalSales sales, _) => sales.sales,
+        data: globalSalesData,
+      ),
+      new charts.Series<OrdinalSales, String>(
+        id: 'Los Angeles Revenue',
+        domainFn: (OrdinalSales sales, _) => sales.year,
+        measureFn: (OrdinalSales sales, _) => sales.sales,
+        data: losAngelesSalesData,
+      )..setAttribute(charts.measureAxisIdKey, secondaryMeasureAxisId)
+      // Set the 'Los Angeles Revenue' series to use the secondary measure axis.
+      // All series that have this set will use the secondary measure axis.
+      // All other series will use the primary measure axis.
+    ];
   }
-
-
 
   @override
   Widget build(BuildContext context) {
-    read();
+    //read();
     return new MaterialApp(
       title: 'Image Loader',
       debugShowCheckedModeBanner: false,
@@ -77,10 +88,16 @@ class _MyAppState extends State<MyApp> {
           ),
         ),
       ),
-      home:BarChartSample2(),
+      //home:BarChartSample2(),
+//      home:HorizontalBarChartWithSecondaryAxis(
+//        _createSampleData(),
+//      // Disable animations for image tests.
+//        animate: false,
+//      ),
+      //home: LineChartSample2(),
         //home:BarChartDemo(),
         //home: ReportSummary(),
-      //home: LoginPage(),
+      home: LoginPage(),
       //home: DatePickerDemo(),
      //home: ReportSummary(),
       localizationsDelegates: [

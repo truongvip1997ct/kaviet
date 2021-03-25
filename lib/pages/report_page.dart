@@ -2,8 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_http_post_request/api/api_service.dart';
-
-
+import 'package:flutter_http_post_request/model/double_chart.dart';
+import 'package:flutter_http_post_request/reports/report_summary.dart';
 import '../ProgressHUD.dart';
 
 class ReportPage extends StatefulWidget {
@@ -30,12 +30,17 @@ class _ReportPageState extends State<ReportPage> {
 
   Widget _uiSetup(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Padding(
-          padding: const EdgeInsets.all(16),
-          child: Card(
-            child: Padding(
-              padding: const EdgeInsets.all(16),
+      appBar: AppBar(title: new Text('Cafe Kaviet',textAlign: TextAlign.center,
+        style: TextStyle(
+            fontSize: 24.0,
+            color: Colors.red,
+            fontWeight: FontWeight.bold),),),
+      body: Center( child: Text('My Page')),
+        drawer : Drawer (
+          child: new SafeArea(
+            top: false,
+            bottom: false,
+            minimum: const EdgeInsets.all(16.0),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -55,7 +60,7 @@ class _ReportPageState extends State<ReportPage> {
                     onPressed: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => SecondRoute()),
+                        MaterialPageRoute(builder: (context) => ReportSummary()),
                       );
                     },
                   ),
@@ -95,12 +100,19 @@ class _ReportPageState extends State<ReportPage> {
                       );
                     },
                   ),
+                  OutlineButton(
+                    child: Text('Lịch sử hóa đơn'),
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => SecondRoute()),
+                      );
+                    },
+                  ),
                 ],
               ),
             ),
           ),
-        ),
-      ),
     );
   }
 }

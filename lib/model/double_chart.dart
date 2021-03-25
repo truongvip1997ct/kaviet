@@ -78,6 +78,8 @@ class BarChartSample2State extends State<BarChartSample2> {
   @override
   Widget build(BuildContext context) {
     return AspectRatio(
+
+
       aspectRatio: 1,
       child: Card(
         elevation: 0,
@@ -90,7 +92,7 @@ class BarChartSample2State extends State<BarChartSample2> {
             mainAxisAlignment: MainAxisAlignment.start,
             mainAxisSize: MainAxisSize.max,
             children: <Widget>[
-              Row(
+              Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisSize: MainAxisSize.min,
                 mainAxisAlignment: MainAxisAlignment.start,
@@ -105,6 +107,7 @@ class BarChartSample2State extends State<BarChartSample2> {
                   ),
                 ],
               ),
+
               const SizedBox(
                 height: 38,
               ),
@@ -136,58 +139,58 @@ class BarChartSample2State extends State<BarChartSample2> {
                         bottomTitles: SideTitles(
                           showTitles: true,
                           textStyle: TextStyle(
-                              color: Color(0xff7589a2), fontWeight: FontWeight.bold, fontSize: 10),
+                              color: Color(0xff7589a2), fontWeight: FontWeight.bold, fontSize: 6),
                           margin: 10,
                           getTitles: (double value) {
                             switch (value.toInt()) {
                               case 0:
-                                return '0h';
+                                return '0';
                               case 1:
-                                return '1h';
+                                return '1';
                               case 2:
-                                return '2h';
+                                return '2';
                               case 3:
-                                return '3h';
+                                return '3';
                               case 4:
-                                return '4h';
+                                return '4';
                               case 5:
-                                return '5h';
+                                return '5';
                               case 6:
-                                return '6h';
+                                return '6';
                               case 7:
-                                return '7h';
+                                return '7';
                               case 8:
-                                return '8h';
+                                return '8';
                               case 9:
-                                return '9h';
+                                return '9';
                               case 10:
-                                return '10h';
+                                return '10';
                               case 11:
-                                return '11h';
+                                return '11';
                               case 12:
-                                return '12h';
+                                return '12';
                               case 13:
-                                return '13h';
+                                return '13';
                               case 14:
-                                return '14h';
+                                return '14';
                               case 15:
-                                return '15h';
+                                return '15';
                               case 16:
-                                return '16h';
+                                return '16';
                               case 17:
-                                return '17h';
+                                return '17';
                               case 18:
-                                return '18h';
+                                return '18';
                               case 19:
-                                return '19h';
+                                return '19';
                               case 20:
-                                return '20h';
+                                return '20';
                               case 21:
-                                return '21h';
+                                return '21';
                               case 22:
-                                return '22h';
+                                return '22';
                               case 23:
-                                return '23h';
+                                return '23';
                                 return '';
                             }
                           },
@@ -232,6 +235,7 @@ class BarChartSample2State extends State<BarChartSample2> {
           ),
         ),
       ),
+
     );
   }
 

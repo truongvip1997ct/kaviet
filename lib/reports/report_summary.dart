@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import '../ProgressHUD.dart';
 import 'package:calendarro/calendarro.dart';
@@ -25,6 +27,12 @@ class ReportSummary extends StatefulWidget {
 
 
 class _ReportSummaryState extends State<ReportSummary> {
+
+  Widget test(data){
+
+    return Text(data);
+  }
+
   ReportSummaryRequestModel reportSummaryRequestModel = new ReportSummaryRequestModel();
 
 
@@ -53,14 +61,12 @@ class _ReportSummaryState extends State<ReportSummary> {
   APIServiceReport apiServiceReport = new APIServiceReport();
 
   Widget build(BuildContext context) {
-    print(reportSummaryRequestModel.endDate);
     return
-      FutureBuilder<ReportSummaryResponsModel>(
+      FutureBuilder<Map>(
         future: apiServiceReport.reportSummary(reportSummaryRequestModel),
-        builder: (BuildContext context, AsyncSnapshot<ReportSummaryResponsModel> snapshot){
+        builder: (BuildContext context, AsyncSnapshot<Map> snapshot){
           Widget result = Container();
           if(snapshot.hasData){
-            print(snapshot.data.success);
             result =  Scaffold(
 
                 body: Center(
@@ -80,13 +86,21 @@ class _ReportSummaryState extends State<ReportSummary> {
                           ],
                         ),
                         Column(
+
                           children: [
                             Text('Giao dịch'),
+
+//                             test(snapshot.data['data']['billing_summary'][0]['total_bill'] + snapshot.data['data']['billing_summary'][1]['total_bill'].toString()),
+//                            test(snapshot.data['data']['billing_summary'][0]['total_bill'].toString()),
+//                            test(snapshot.data['data']['billing_summary'][1]['total_bill'].toString()),
                           ],
                         ),
                         Column(
                           children: [
                             Text('Tổng Số tiền thu được'),
+                            test(int.parse(snapshot.data['data']['billing_summary'][0]['total_price'] + snapshot.data['data']['billing_summary'][1]['total_price']).toString()),
+                            test(snapshot.data['data']['billing_summary'][0]['total_price']),
+                            test(snapshot.data['data']['billing_summary'][1]['total_price']),
                           ],
                         ),
                       ],
@@ -98,8 +112,6 @@ class _ReportSummaryState extends State<ReportSummary> {
           return result;
         }
     );
-//    return Text("Ok");
-    //DateTime tempDate = new DateFormat("dd/MM/yyyy hh:mm:ss").parse("12/01/2020 10:07:23");
 
 
   }
